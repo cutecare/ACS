@@ -17,13 +17,14 @@ Author: evgeny.savitsky@gmail.com
 
 class ACSensor {
   public:
-	  ACSensor(float sensitivity = 40.0, float noise = 10.0);
-	  float getEffectiveVoltage();
+    ACSensor(float sensitivity = 40.0, float noise = 10.0);
+    void begin();
+    float getEffectiveVoltage();
     float getEffectiveAmperes();
     int getEffectiveWatt();
 
   private:
-	  float _sensitivity = 0;
+    float _sensitivity = 0;
     float _noise = 0;
     float _zero = 0;
 };
