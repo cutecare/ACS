@@ -18,10 +18,10 @@ Author: evgeny.savitsky@gmail.com
 class ACSensor {
   public:
     ACSensor(float sensitivity = 40.0, float noise = 10.0);
-    void begin();
+    void calibrate();
     float getVoltage();
     float getAmperes();
-    int getWatt();
+    int getWatt(int voltage = 220);
 
   private:
     float _sensitivity = 0;
