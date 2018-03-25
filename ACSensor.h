@@ -19,9 +19,9 @@ class ACSensor {
   public:
     ACSensor(float sensitivity = 40.0, float noise = 10.0);
     void begin();
-    float getEffectiveVoltage();
-    float getEffectiveAmperes();
-    int getEffectiveWatt();
+    float getVoltage();
+    float getAmperes();
+    int getWatt();
 
   private:
     float _sensitivity = 0;
