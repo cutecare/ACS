@@ -18,16 +18,17 @@ void ACSensor::calibrate()
 
 float ACSensor::getVoltage()
 {
+  int maxValue, readValue;
   float averageValue = 0.0;
   int samples = 5;
   
   pinMode(_pin, INPUT);
   
   for( int j = 0; j < samples; j++ ) {
-	unsigned int maxValue = 0;
+	maxValue = 0;
     for( int i = 0; i < 20; i++ ) {
-      unsigned int readValue = analogRead(_pin);
-      readValue = abs(readValue - 512); // bi-directional ACS
+	  readValue = analogRead(_pin) - 512; // bi-directional ACS
+	  readValue = abs(readValue);
       if ( readValue > maxValue ) {
         maxValue = readValue;
       }
@@ -40,8 +41,8 @@ float ACSensor::getVoltage()
 
 float ACSensor::getAmperes()
 {
-  float voltage = getVoltage();
-  voltage = abs(voltage - _zero);
+  float voltage = getVoltage() - _zero;
+  voltage = abs(voltage);
   return (voltage <= _noise) ? 0.0 : (voltage * AC_RMS_COEFF / _sensitivity);
 }
 
